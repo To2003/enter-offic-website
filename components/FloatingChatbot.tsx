@@ -37,18 +37,17 @@ export default function FloatingChatbot() {
   };
 
   return (
-    // LA MAGIA: pointer-events-none hace que este contenedor no bloquee los clics de la web
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       
       {/* --- Ventana del Chat --- */}
       <div className={`
           transition-all duration-300 ease-in-out transform origin-bottom-right
           ${isOpen ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' : 'opacity-0 translate-y-10 scale-95 pointer-events-none'}
-          bg-white w-[calc(100vw-3rem)] sm:w-[380px] h-[500px] max-h-[75vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 border border-gray-200
+          bg-white w-[calc(100vw-2rem)] sm:w-[380px] h-[calc(100dvh-7rem)] sm:h-[600px] sm:max-h-[80vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 border border-gray-200
         `}>
           
-        {/* Header con gradiente Rojo/Cálido */}
-        <div className="bg-gradient-to-r from-red-600 to-orange-500 p-5 text-white flex justify-between items-center shadow-sm">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-red-600 to-orange-500 p-4 sm:p-5 text-white flex justify-between items-center shadow-sm">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white">
@@ -62,7 +61,7 @@ export default function FloatingChatbot() {
           </div>
           <button 
             onClick={() => setIsOpen(false)} 
-            className="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-1 transition-colors"
+            className="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-2 transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
               <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
@@ -71,7 +70,7 @@ export default function FloatingChatbot() {
         </div>
 
         {/* Área de mensajes */}
-        <div className="flex-1 p-5 overflow-y-auto bg-stone-50 flex flex-col gap-4">
+        <div className="flex-1 p-4 sm:p-5 overflow-y-auto bg-stone-50 flex flex-col gap-4">
           {messages.map((msg, index) => (
             <div key={index} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               
@@ -123,21 +122,20 @@ export default function FloatingChatbot() {
       </div>
 
       {/* --- Botón Flotante --- */}
-      {/* LA OTRA MAGIA: pointer-events-auto permite que el botón sí se pueda tocar */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
           pointer-events-auto 
-          w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300
+          w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300
           ${isOpen ? 'bg-slate-700 rotate-90 scale-90' : 'bg-gradient-to-r from-red-600 to-orange-500 hover:scale-110 animate-pulse-slow'}
         `}
       >
         {isOpen ? (
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 sm:w-8 sm:h-8 text-white">
              <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
            </svg>
         ) : (
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 sm:w-8 sm:h-8 text-white">
              <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.562 2.632 6.19l-2.047 2.047a.75.75 0 001.06 1.06l1.959-1.959a.75.75 0 00-.106-1.06zM12 19.5c-4.476 0-8.25-3.375-8.25-7.5S7.524 4.5 12 4.5s8.25 3.375 8.25 7.5-3.774 7.5-8.25 7.5z" clipRule="evenodd" />
              <path d="M12 10.5a.75.75 0 100-1.5.75.75 0 000 1.5zm0 3a.75.75 0 100-1.5.75.75 0 000 1.5zm0 3a.75.75 0 100-1.5.75.75 0 000 1.5z" opacity=".6" />
            </svg>

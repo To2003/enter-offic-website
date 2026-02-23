@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { BookOpen, CheckCircle } from "lucide-react"
+import { BookOpen, CheckCircle, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,27 +15,17 @@ import {
 } from "@/components/ui/select"
 
 const colegios = [
-  "Colegio San Martin",
+  "Colegio San Martín",
   "Escuela N° 1",
   "Escuela N° 2",
-  "Instituto Nuestra Senora",
+  "Instituto Nuestra Señora",
   "Colegio Lincoln",
   "Otro",
 ]
 
 const cursos = [
-  "1er grado",
-  "2do grado",
-  "3er grado",
-  "4to grado",
-  "5to grado",
-  "6to grado",
-  "1er ano",
-  "2do ano",
-  "3er ano",
-  "4to ano",
-  "5to ano",
-  "6to ano",
+  "1er grado", "2do grado", "3er grado", "4to grado", "5to grado", "6to grado",
+  "1er año", "2do año", "3er año", "4to año", "5to año", "6to año",
 ]
 
 export function ReservationForm() {
@@ -50,7 +40,7 @@ export function ReservationForm() {
     const materiales = formData.get("materiales") as string
 
     const message = encodeURIComponent(
-      `Hola! Quiero reservar cuadernillos.\n\nNombre: ${nombre}\nColegio: ${colegio}\nCurso: ${curso}\nMateriales: ${materiales}`
+      `¡Hola Enter Office! 👋 Quería reservar un cuadernillo.\n\n*A nombre de:* ${nombre}\n*Colegio:* ${colegio}\n*Curso:* ${curso}\n*Materiales extra:* ${materiales}`
     )
     window.open(`https://wa.me/5491156360053?text=${message}`, "_blank")
     setSubmitted(true)
@@ -58,22 +48,22 @@ export function ReservationForm() {
 
   if (submitted) {
     return (
-      <section id="reservar" className="bg-muted px-4 py-20 lg:px-8">
-        <div className="mx-auto max-w-lg text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <CheckCircle className="h-8 w-8 text-primary" />
+      <section id="reservar" className="bg-stone-50 dark:bg-slate-950 px-4 py-24 lg:px-8 transition-colors duration-300">
+        <div className="mx-auto max-w-lg text-center bg-white dark:bg-slate-900 p-10 rounded-3xl shadow-xl dark:shadow-none border border-stone-100 dark:border-slate-800 transition-colors duration-300">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/40">
+            <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground">
-            Reserva enviada
+          <h2 className="text-3xl font-extrabold text-slate-800 dark:text-white">
+            ¡Reserva lista!
           </h2>
-          <p className="mt-2 text-muted-foreground">
-            Se abrio WhatsApp con tu pedido. Si no se abrio automaticamente,
-            escribinos al 11 5636 0053.
+          <p className="mt-4 text-lg font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
+            Se abrió WhatsApp con tu pedido. Si no se abrió automáticamente, mandanos un mensaje al <span className="font-bold text-slate-800 dark:text-white">11 5636 0053</span>.
           </p>
           <Button
             onClick={() => setSubmitted(false)}
             variant="outline"
-            className="mt-6"
+            size="lg"
+            className="mt-8 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-50 dark:hover:bg-slate-800"
           >
             Hacer otra reserva
           </Button>
@@ -83,32 +73,31 @@ export function ReservationForm() {
   }
 
   return (
-    <section id="reservar" className="bg-muted px-4 py-20 lg:px-8">
+    <section id="reservar" className="bg-stone-50 dark:bg-slate-950 px-4 py-20 lg:px-8 transition-colors duration-300">
       <div className="mx-auto max-w-6xl">
-        <div className="grid items-start gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          
+          <div className="flex flex-col justify-center h-full">
+            <p className="text-sm font-extrabold uppercase tracking-wider text-red-600 dark:text-red-500">
               Reserva de cuadernillos
             </p>
-            <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Reserva tus cuadernillos escolares
+            <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-slate-800 dark:text-white md:text-5xl leading-tight">
+              Reservá tus cuadernillos escolares
             </h2>
-            <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              Completa el formulario con tus datos y los materiales que
-              necesitas. Nos comunicamos por WhatsApp para confirmar tu pedido y
-              te lo tenemos listo para retirar.
+            <p className="mt-6 text-pretty leading-relaxed text-lg font-medium text-slate-600 dark:text-slate-300">
+              Completá el formulario con tus datos y los materiales que necesitas. Nos comunicamos por WhatsApp para confirmarlo y te lo preparamos para retirar.
             </p>
-            <div className="mt-8 flex items-start gap-4 rounded-lg border border-border bg-card p-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                <BookOpen className="h-5 w-5 text-primary" />
+            
+            <div className="mt-10 flex items-start gap-4 rounded-3xl border border-blue-100 dark:border-blue-800/50 bg-blue-50/50 dark:bg-blue-900/20 p-6 shadow-sm transition-colors duration-300">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-blue-100 dark:border-blue-800/50">
+                <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-card-foreground">
-                  Cuadernillos a medida
+                <h3 className="font-bold text-lg text-slate-800 dark:text-white">
+                  A tu medida
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Preparamos cuadernillos para cada colegio y materia. Pedinos
-                  lo que necesites y lo tenemos listo.
+                <p className="mt-2 text-base font-medium text-slate-600 dark:text-slate-400">
+                  Preparamos los cuadernillos específicos de cada colegio de la zona. Pedinos el que buscas y lo armamos.
                 </p>
               </div>
             </div>
@@ -116,29 +105,30 @@ export function ReservationForm() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-xl border border-border bg-card p-6 shadow-sm lg:p-8"
+            className="rounded-[2.5rem] border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none sm:p-10 transition-colors duration-300"
           >
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="nombre" className="text-card-foreground">Nombre y Apellido</Label>
+            <div className="flex flex-col gap-6">
+              
+              <div className="flex flex-col gap-2.5">
+                <Label htmlFor="nombre" className="text-base font-bold text-slate-700 dark:text-slate-200">Nombre y Apellido del alumno</Label>
                 <Input
                   id="nombre"
                   name="nombre"
-                  placeholder="Ej: Maria Garcia"
+                  placeholder="Ej: María García"
                   required
-                  className="bg-background"
+                  className="h-12 rounded-xl bg-stone-50 dark:bg-slate-950 dark:text-white border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-red-400 focus:ring-red-400 text-base"
                 />
               </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="colegio" className="text-card-foreground">Colegio</Label>
+              <div className="flex flex-col gap-2.5">
+                <Label htmlFor="colegio" className="text-base font-bold text-slate-700 dark:text-slate-200">Colegio</Label>
                 <Select name="colegio" required>
-                  <SelectTrigger id="colegio" className="bg-background">
-                    <SelectValue placeholder="Selecciona un colegio" />
+                  <SelectTrigger id="colegio" className="h-12 rounded-xl bg-stone-50 dark:bg-slate-950 dark:text-white border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-red-400 text-base">
+                    <SelectValue placeholder="Seleccioná un colegio" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="rounded-xl dark:bg-slate-900 dark:border-slate-800">
                     {colegios.map((c) => (
-                      <SelectItem key={c} value={c}>
+                      <SelectItem key={c} value={c} className="rounded-lg cursor-pointer dark:focus:bg-slate-800">
                         {c}
                       </SelectItem>
                     ))}
@@ -146,15 +136,15 @@ export function ReservationForm() {
                 </Select>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="curso" className="text-card-foreground">Curso</Label>
+              <div className="flex flex-col gap-2.5">
+                <Label htmlFor="curso" className="text-base font-bold text-slate-700 dark:text-slate-200">Curso / Año</Label>
                 <Select name="curso" required>
-                  <SelectTrigger id="curso" className="bg-background">
-                    <SelectValue placeholder="Selecciona un curso" />
+                  <SelectTrigger id="curso" className="h-12 rounded-xl bg-stone-50 dark:bg-slate-950 dark:text-white border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-red-400 text-base">
+                    <SelectValue placeholder="Seleccioná el curso" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="rounded-xl max-h-64 dark:bg-slate-900 dark:border-slate-800">
                     {cursos.map((c) => (
-                      <SelectItem key={c} value={c}>
+                      <SelectItem key={c} value={c} className="rounded-lg cursor-pointer dark:focus:bg-slate-800">
                         {c}
                       </SelectItem>
                     ))}
@@ -162,27 +152,29 @@ export function ReservationForm() {
                 </Select>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="materiales" className="text-card-foreground">Materiales que necesites</Label>
+              <div className="flex flex-col gap-2.5">
+                <Label htmlFor="materiales" className="text-base font-bold text-slate-700 dark:text-slate-200">¿Qué materiales necesitas?</Label>
                 <Textarea
                   id="materiales"
                   name="materiales"
-                  placeholder="Ej: Cuadernillo de Matematica, Lengua y Ciencias Naturales"
+                  placeholder="Ej: Cuadernillo de Matemática y Lengua, más un block rayado."
                   rows={4}
                   required
-                  className="resize-none bg-background"
+                  className="resize-none rounded-xl bg-stone-50 dark:bg-slate-950 dark:text-white border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-red-400 focus:ring-red-400 text-base p-4 placeholder:text-slate-400 dark:placeholder:text-slate-500"
                 />
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                className="mt-4 h-14 w-full rounded-xl bg-red-600 text-lg font-bold text-white shadow-md hover:bg-red-700 hover:scale-[1.02] transition-all"
               >
+                <Send className="mr-2 h-5 w-5" />
                 Reservar por WhatsApp
               </Button>
             </div>
           </form>
+
         </div>
       </div>
     </section>
