@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 export function ExpressPickup() {
   const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const nombre = formData.get("nombre-express") as string

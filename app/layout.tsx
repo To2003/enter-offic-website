@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import FloatingChatbot from '@/components/FloatingChatbot'
 import './globals.css'
 
-const _inter = Inter({ subsets: ["latin"] });
+// Instanciamos Nunito con los grosores que más vamos a usar
+const nunito = Nunito({ 
+  subsets: ["latin"], 
+  weight: ['400', '600', '700', '800'] 
+});
 
 export const metadata: Metadata = {
   title: 'Enter Office | Libreria y Fotocopiadora en Victoria',
@@ -24,7 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className="font-sans antialiased">
+      {/* Sumamos la nueva fuente, el tamaño responsivo y un color de fondo más cálido */}
+      <body className={`${nunito.className} text-base md:text-lg bg-stone-50 antialiased`}>
         {children}
         <Analytics />
         <FloatingChatbot />
